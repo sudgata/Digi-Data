@@ -1,0 +1,84 @@
+<div class="my-3">
+    <span style="font-size: 25px; color:sienna; font-weight: 550;" class="cursive-text"><i><u>Folders</u></i></span> 
+</div>
+<div *ngIf="!isFolderLoading && folders.length>0;else folderLoading">
+    <div class="d-flex flex-wrap flex-wrap-container">
+        <div *ngFor="let folder of folders" class="px-2 py-2 folder" style="max-width: 250px; min-width: 250px">
+            <div class="d-flex flex-row">
+                <div style="width: 85%;" class="folder-div">
+                    <button mat-raised-button class="long-text-truncate w-100 folder-button" [routerLink]="['/my-dashboard/folder',folder.id]" 
+                    [ngStyle]="{'background-color':folder.isFavourite === true ? 'lightyellow' : 'white' }"> 
+                        <mat-icon class="folder-icon">folder</mat-icon>
+                        <span class="cursive-text" style="font-weight: 550;">&nbsp;{{folder.name}}</span>
+                    </button>
+                </div>
+                <div style="width: 15%;" class="p-0 menu-div">
+                    <button mat-icon-button [matMenuTriggerFor]="folderMenu" [matMenuTriggerData]="{folder: folder}">
+                    <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+<div class="my-3">
+    <span style="font-size: 25px; color:sienna; font-weight: 550;" class="cursive-text"><i><u>Files</u> </i></span> 
+</div>
+<div *ngIf="!isFileLoading && files.length>0 ;else fileLoading">
+    <div class="d-flex flex-wrap flex-wrap-container">
+        <div *ngFor="let file of files" class="px-2 py-2 folder" style="max-width: 225px; min-width: 225px">
+            <div class="d-flex flex-row">
+                <div style="width: 85%;" class="folder-div">
+                    <button mat-raised-button class="long-text-truncate w-100 folder-button" (click)="openFile(file.url)"> 
+                        <mat-icon class="file-icon">insert_drive_file</mat-icon>
+                        <span class="cursive-text" style="font-weight: 550;">&nbsp;{{file.name}}</span>
+                    </button>
+                </div>
+                <div style="width: 15%;" class="p-0 menu-div">
+                    <button mat-icon-button [matMenuTriggerFor]="fileMenu" [matMenuTriggerData]="{file: file}">
+                    <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+<mat-menu #folderMenu="matMenu">
+	<ng-template matMenuContent let-folder="folder">
+		<button mat-menu-item *ngIf="!(folder.isFavourite)" class="cursive-text" (click)="addtoFavourite(folder)">Add to Favourite</button>
+        <button mat-menu-item *ngIf="(folder.isFavourite)" class="cursive-text" (click)="removeFromFavourite(folder)">Remove from Favourite</button>
+	</ng-template>
+</mat-menu>
+
+<mat-menu #fileMenu="matMenu">
+	<ng-template matMenuContent let-file="file">
+		<button mat-menu-item class="cursive-text" (click)="deleteFile(file)">Delete</button>
+	</ng-template>
+</mat-menu>
+<ng-template #folderLoading>
+    <ng-container *ngIf="folders.length==0 && !isFolderLoading">
+        <div class="my-3 d-flex align-items-center">
+            <div style="font-size:20px;" class="cursive-text">No Folders Found&nbsp;</div>
+            <div><mat-icon>sentiment_very_dissatisfied</mat-icon></div>       
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isFolderLoading" class="my-3">
+        <mat-spinner diameter="50"></mat-spinner>
+    </ng-container>
+</ng-template>
+
+<ng-template #fileLoading>
+    <ng-container *ngIf="files.length==0 && !isFileLoading">
+        <div class="my-3 d-flex align-items-center">
+            <div style="font-size:20px;" class="cursive-text">No Files Found&nbsp;</div>
+            <div><mat-icon>sentiment_very_dissatisfied</mat-icon></div>       
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isFileLoading" class="my-3">
+        <mat-spinner diameter="50"></mat-spinner>
+    </ng-container>
+</ng-template>

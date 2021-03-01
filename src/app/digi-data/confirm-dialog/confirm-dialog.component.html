@@ -1,0 +1,8 @@
+<mat-dialog-content class="mat-typography">
+    <span style="font-size: 15px; font-weight: 500;" class="cursive-text">{{message}}</span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="close()"><span class="cursive-text">No</span></button>
+  <button mat-stroked-button cdkFocusInitial (click)="delete()" color="primary"><span class="cursive-text">Yes</span></button>
+</mat-dialog-actions>
+

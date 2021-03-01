@@ -1,0 +1,39 @@
+<div class="container">
+        <form class="login-form" [formGroup]="loginForm">
+        <mat-card class="mat-elevation-z5">
+        <div class="d-flex flex-column justify-content-center px-5">
+        <div class="mt-4">
+            <span class="header-text cursive-text"> Please Login here</span>
+        </div>
+        <div >
+            <mat-form-field appearance="standard" class="w-100 mb-1">
+                <mat-label class="cursive-text">Email</mat-label>
+                <input matInput autocomplete="off" formControlName="email">
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+        </div>
+        <div >
+            <mat-form-field appearance="standard" class="w-100 mb-1">
+                <mat-label class="cursive-text">Password</mat-label>
+                <input matInput type="password" autocomplete="off" formControlName="password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+        </div>
+        <div class="text-center cursive-text">
+            <button mat-raised-button class="digi-submit-btn" (click)="login()"><span class="cursive-text">Login</span></button>
+        </div>
+        <div class="text-center mt-4 cursive-text">
+            <a class="link" (click)="openForgotPasswordDialog()">Forgot Password?</a>
+        </div>
+        <div class="text-center mt-3 cursive-text">
+            Need an account ? <a class="link" (click)="navigateToSignUp()">Register here</a>
+        </div>
+
+        </div>
+        
+    </mat-card>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+</form>
+
+</div>
+    

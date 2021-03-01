@@ -1,0 +1,47 @@
+.login-form{
+    min-width: 500px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.header-text{
+    font-size: 28px;
+    font-weight: 500;
+}
+mat-card{
+    height:400px;
+}
+.link{
+    cursor: pointer;
+    color:rgb(0, 0, 238)
+}
+.link :hover{
+    text-decoration: underline;
+}
+
+.digi-submit-btn{
+    font-size: 17px;
+}
+
+input{
+    font-family: cursive;
+}
+
+@media (max-width: 540px) {
+    .login-form {
+      min-width: 90%;
+    }
+    mat-card{
+        height:390px;
+    }
+    mat-card >div{
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+    .header-text{
+        font-size: 20px;
+        font-weight: 500;
+    }
+  }

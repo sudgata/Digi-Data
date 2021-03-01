@@ -1,0 +1,58 @@
+<div class="container">
+        <form class="signup-form" [formGroup]="signupForm">
+        <mat-card class="mat-elevation-z5">
+        <div class="d-flex flex-column justify-content-center px-5">
+        <div class="mt-4">
+            <span class="header-text cursive-text"> Register</span>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-12">
+                <mat-form-field appearance="standard" class="w-100 mb-1">
+                    <mat-label class="cursive-text">Firstname</mat-label>
+                    <input matInput autocomplete="off" formControlName="firstname">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-5 col-12">
+                <mat-form-field appearance="standard" class="w-100 mb-1">
+                    <mat-label class="cursive-text">Lastname</mat-label>
+                    <input matInput autocomplete="off" formControlName="lastname">
+                  </mat-form-field>
+            </div>
+            
+        </div>
+        <div >
+            <mat-form-field appearance="standard" class="w-100 mb-1">
+                <mat-label class="cursive-text">Email</mat-label>
+                <input matInput autocomplete="off" formControlName="email">
+                <mat-error *ngIf="signUpFormControl.email.errors?.email" class="cursive-text">Please enter a valid email</mat-error>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="w-100 mb-1">
+                <mat-label class="cursive-text">Password</mat-label>
+                <input matInput type="password" autocomplete="off" formControlName="password">
+                <mat-error *ngIf="signUpFormControl.password.errors?.minlength" class="cursive-text">Password must be at least 6 characters</mat-error>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="w-100 mb-1">
+                <mat-label class="cursive-text">Confirm Password</mat-label>
+                <input matInput type="password" autocomplete="off" formControlName="confirmPassword">
+                <mat-error *ngIf="signUpFormControl.confirmPassword.errors?.mustMatch" class="cursive-text">Passwords don't match</mat-error>
+              </mat-form-field>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button class="digi-submit-btn" (click)="registerUser()">
+            <span class="cursive-text">Sign Up</span>
+            </button>
+        </div>
+        <div class="text-center mt-4 cursive-text">
+            Already have an account ? <a class="link" (click)="navigateToLogin()">Login here</a>
+         </div>
+        </div>
+    </mat-card>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+</form>
+
+</div>
+    

@@ -1,0 +1,31 @@
+.long-text-truncate{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.flex-wrap-container{
+    flex: 25% !important;  
+}
+
+.folder-icon{
+    color: #ffc10a !important;
+}
+
+@media (max-width: 540px) {
+    .flex-wrap-container{
+      flex: 100% !important;  
+    }
+    .folder{
+        min-width: 100% !important;
+        max-width: none !important;
+    }
+    .folder-div{
+        width: 90% !important;
+    }
+    .menu-div{
+        width: 10% !important;
+    }
+}

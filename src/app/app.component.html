@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <div>
+      <span class="link header-text" (click)="navigateToHome()">Digi Data</span>
+    </div>
+    <span class="spacer"></span>
+    <div *ngIf="user">
+        <button mat-icon-button (click)="navigateToHome()">
+          <mat-icon style="font-size: 30px;">home</mat-icon>
+        </button>
+        <button mat-icon-button (click)="navigateToFavourite()">
+          <mat-icon style="font-size: 30px;">favorite</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" >
+          <mat-icon style="font-size: 30px;">person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <Span class="pl-3 pr-3 pt-4 cursive-text">{{user?.displayName}}</Span>
+          <button mat-menu-item (click)="logout()">
+            <span style="font-size: 16px;" class="cursive-text">Logout</span>
+          </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

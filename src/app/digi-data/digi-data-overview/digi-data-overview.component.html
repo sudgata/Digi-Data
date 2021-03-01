@@ -1,0 +1,70 @@
+<div class="row p-3 m-0">
+    <div class="col-md-9 col-sm-12  breadcrumb-div">
+        <mat-card style="min-height: 72px;">
+            <nav class="p-0 cursive-text" >
+                <ol class="breadcrumb bg-white p-0 m-0" *ngIf="showRoot">
+                    <ng-container *ngIf="showRoot">
+                        <li class="breadcrumb-item"><a [routerLink]="['/my-dashboard/folder']">Dashboard</a></li>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="breadcrumbPath$ | async as breadcrumbPath">
+                        <ng-container *ngFor="let item of breadcrumbPath">
+                            <li class="breadcrumb-item"><a [routerLink]="['/my-dashboard/folder',item.id]">
+                               <span class="long-text-truncate mobile-truncate-middle-element" style="max-width: 150px; ">
+                                {{item?.name}}
+                               </span>
+                            </a></li>
+                        </ng-container>
+                    </ng-container>
+                  <li class="breadcrumb-item active">
+                    <span class="long-text-truncate mobile-truncate-last-element" style="max-width:200px; ">
+                      {{currentFolder?.name}}
+                      </span>
+                    </li>
+                </ol>
+                <ng-container *ngIf="!showRoot">
+                    <div class="text-center">
+                        <span class="header-text cursive-text">Welcome to Digi Data</span>
+                    </div>
+                </ng-container>
+            </nav>
+        </mat-card>
+    </div>
+    
+    <div class="col-md-3 col-sm-12  icon-div">
+        <mat-card class="p-1">
+        <div class="d-flex flex-row justify-content-center icon-container">
+            <div class="mr-3">
+                <div class="text-center">
+                    <button mat-mini-fab color="primary" (click)="CreateNewFolder()">
+                        <mat-icon>create_new_folder</mat-icon>
+                        
+                    </button>
+                </div>
+                <div>
+                        <span style="font-weight: 500;" class="cursive-text">Add New Folder</span>
+                </div>
+            </div>
+            <div>
+                <div class="text-center">
+                    <button mat-mini-fab color="primary" (click)="fileInputTemp.click()">
+                        <mat-icon>note_add</mat-icon>
+                    </button>
+                </div>
+                <input hidden type="file" [formControl]="fileInput" #fileInputTemp style="position: absolute;opacity: 0; left: -9999px;" (change)="handleUpload($event)">
+                <div>
+                    <span style="font-weight: 500;" class="cursive-text">Add New File</span> 
+                </div>
+            </div>
+        </div>  
+    </mat-card>  
+    </div>
+    </div>
+    <div class="col-md-12 pl-3 pr-3 pt-0">
+        <div class="pl-3 pr-3">
+            <mat-progress-bar *ngIf="this.fileService.isFileUploaded" mode="indeterminate"></mat-progress-bar>
+        </div>
+        <mat-card style="min-height: 450px;" class="mx-3 folder-card">
+            <router-outlet></router-outlet>
+        </mat-card>
+    </div>

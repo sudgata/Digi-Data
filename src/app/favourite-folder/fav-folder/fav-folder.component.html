@@ -1,0 +1,41 @@
+<div class="col mt-4 pl-3 pr-3">
+    <mat-card style="min-height: 550px;" class="mx-3">
+        <h2 class="text-center cursive-text">Favourites</h2>
+        <div *ngIf="!isLoading && favFolders.length>0;else loading" class="mt-4">
+            <div class="d-flex flex-wrap flex-wrap-container">
+                <div *ngFor="let folder of favFolders" class="px-2 py-2 folder" style="max-width: 250px; min-width: 250px">
+                    <div class="d-flex flex-row">
+                        <div style="width: 85%;" class="folder-div">
+                            <button mat-raised-button class="long-text-truncate w-100 folder-button" style="background-color: lightyellow !important;" [routerLink]="['/my-dashboard/folder',folder.id]" > 
+                                <mat-icon class="folder-icon">folder</mat-icon>
+                                <span style="font-weight: 550;" class="cursive-text">&nbsp;{{folder.name}}</span>
+                            </button>
+                        </div>
+                        <div style="width: 15%;" class="p-0 menu-div">
+                            <button mat-icon-button [matMenuTriggerFor]="favFolderMenu" [matMenuTriggerData]="{folder: folder}">
+                            <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                    </div>                                       
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<ng-template #loading>
+    <ng-container *ngIf="favFolders.length==0 && !isLoading">
+        <div class="p-2">
+            <span style="font-size:22px;">No folders added as favourite</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isLoading">
+        <div class="mt-2 d-flex justify-content-center">
+            <mat-spinner diameter="50"></mat-spinner>
+        </div>
+    </ng-container>
+</ng-template>
+<mat-menu #favFolderMenu="matMenu">
+	<ng-template matMenuContent let-folder="folder">
+        <button mat-menu-item *ngIf="(folder.isFavourite)" class="cursive-text" (click)="removeFromFavourite(folder)">Remove from Favourite</button>
+	</ng-template>
+</mat-menu>

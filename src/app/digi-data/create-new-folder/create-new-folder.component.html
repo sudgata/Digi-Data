@@ -1,0 +1,14 @@
+<h2 mat-dialog-title class="cursive-text">Create New Folder</h2>
+<mat-dialog-content class="mat-typography">
+    <div >
+        <mat-form-field appearance="standard" class="w-100 mb-1">
+            <mat-label class="cursive-text">Folder Name</mat-label>
+            <input matInput autocomplete="off" [formControl]="folderName">
+            <mat-icon matSuffix>folder</mat-icon>
+          </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close><span class="cursive-text">Cancel</span></button>
+  <button mat-stroked-button cdkFocusInitial (click)="createFolder()" color="primary"><span class="cursive-text">Create</span></button>
+</mat-dialog-actions>
